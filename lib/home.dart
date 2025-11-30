@@ -17,25 +17,26 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        backgroundColor: Colors.blue,
         title: SizedBox(
           height: 40,
-          child: Image.asset('assets/bold.png', fit: BoxFit.contain),
+          child: Image.asset('assets/images/bold.png', fit: BoxFit.contain),
         ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CarouselSlider(
-            items: images
+            items: listaDeProdutos
                 .map(
                   (item) => Container(
                     margin: EdgeInsets.all(5),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                        image: NetworkImage(item),
-                        fit: BoxFit.cover,
-                      ),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(item.img, fit: BoxFit.cover),
                     ),
                   ),
                 )
@@ -45,7 +46,7 @@ class _HomeState extends State<Home> {
               autoPlay: false,
               enlargeCenterPage: true,
               aspectRatio: 16 / 9,
-              viewportFraction: 0.8,
+              viewportFraction: 0.7,
               onPageChanged: (index, reason) {
                 setState(() {
                   currentIndex = index;
@@ -56,7 +57,7 @@ class _HomeState extends State<Home> {
           SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: images
+            children: listaDeProdutos
                 .asMap()
                 .entries
                 .map(
@@ -73,6 +74,12 @@ class _HomeState extends State<Home> {
                   ),
                 )
                 .toList(),
+          ),
+          SizedBox(height: 16),
+          Text(
+            listaDeProdutos[currentIndex].title,
+            style: TextStyle(fontSize: 40, fontFamily: 'BebasNeue'),
+            textAlign: TextAlign.center,
           ),
         ],
       ),

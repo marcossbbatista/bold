@@ -5,7 +5,7 @@ void main() {
   runApp(
     MaterialApp(
       home: Home(),
-      theme: ThemeData(fontFamily: 'Bebas'),
+      theme: ThemeData(fontFamily: 'BebasNeue'),
     ),
   );
 }
